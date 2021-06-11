@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "356741356949",
+    "project_id": "bber-73806",
+    "storage_bucket": "bber-73806.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:356741356949:android:d698caa1f940c53269aa9c",
+        "android_client_info": {
+          "package_name": "com.example.a3bbernav"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "356741356949-t8siqvj3rqrj7nov0dms6iq8mcftuhjg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBRh6cSc5BxjOtHfN8S309DHT-zLQbaSVo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "356741356949-t8siqvj3rqrj7nov0dms6iq8mcftuhjg.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
