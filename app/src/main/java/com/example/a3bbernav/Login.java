@@ -25,7 +25,7 @@ import com.google.firebase.auth.FirebaseUser;
 
 import es.dmoral.toasty.Toasty;
 
-public class Login extends AppCompatActivity {
+public class Login extends AppCompat {
 
     Button login, signup;
     EditText email, password;

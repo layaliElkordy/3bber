@@ -3,17 +3,22 @@ package com.example.a3bbernav;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -31,14 +36,15 @@ import com.google.firebase.auth.SignInMethodQueryResult;
 
 import es.dmoral.toasty.Toasty;
 
-public class signUp extends AppCompatActivity {
+public class signUp extends AppCompat {
 
     Button go2login, register;
     EditText email, phone, password, confirm;
-    TextView useremail;
+    TextView useremail, mTextView;
     ProgressBar progress;
     FirebaseAuth mAuth = FirebaseAuth.getInstance();
     CheckBox show;
+    LanguageManger lang;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,12 +54,62 @@ public class signUp extends AppCompatActivity {
         go2login = findViewById(R.id.go2login);
         register = findViewById(R.id.register);
         email = findViewById(R.id.emailUp);
-        phone = findViewById(R.id.phone);
+        //phone = findViewById(R.id.phone);
         password = findViewById(R.id.password);
         confirm = findViewById(R.id.confirmpass);
         progress = findViewById(R.id.progressBar);
         show = findViewById(R.id.checkBox);
         useremail = findViewById(R.id.useremail);
+
+        Spinner mLanguage = (Spinner) findViewById(R.id.spinner);
+        mTextView = findViewById(R.id.create);
+
+        lang = new LanguageManger(this);
+
+        /*ArrayAdapter<String> mAdapter = new ArrayAdapter<String>(getBaseContext(), android.R.layout.simple_spinner_dropdown_item, getResources().getStringArray(R.array.locality));
+        mLanguage.setAdapter(mAdapter);
+
+        if (LocaleHelper.getLanguage(signUp.this).equalsIgnoreCase("en")) {
+            mLanguage.setSelection(mAdapter.getPosition("English"));
+        } else if (LocaleHelper.getLanguage(signUp.this).equalsIgnoreCase("ar")) {
+            mLanguage.setSelection(mAdapter.getPosition("عربي"));
+        }*/
+
+        mLanguage.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                //Context context;
+                //Resources resources;
+                switch (i) {
+                    case 0:
+                        lang.updateResource("ar");
+                        //recreate();
+                        //context = LocaleHelper.setLocale(getBaseContext(), "ar");
+                        //resources = context.getResources();
+                        //mTextView.setText(resources.getString(R.string.create));
+                        break;
+                    case 1:
+                        lang.updateResource("en");
+                        //recreate();
+                        //context = LocaleHelper.setLocale(getBaseContext(), "en");
+                        //resources = context.getResources();
+                        //mTextView.setText(resources.getString(R.string.create));
+                        break;
+                    /*case 2:
+                        context = LocaleHelper.setLocale(MainActivity.this, "es");
+                        resources = context.getResources();
+                        mTextView.setText(resources.getString(R.string.text_translation));
+                        break;*/
+
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
 
         show.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -73,11 +129,10 @@ public class signUp extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String Email = email.getText().toString();
-                String Phone = phone.getText().toString();
                 String Pass = password.getText().toString();
                 String Passconfirm = confirm.getText().toString();
 
-                if(!Email.isEmpty() && !Phone.isEmpty() && !Pass.isEmpty() && !Passconfirm.isEmpty()){
+                if(!Email.isEmpty() && !Pass.isEmpty() && !Passconfirm.isEmpty()){
 
                     if(Pass.equals(Passconfirm)){
 
@@ -167,12 +222,13 @@ public class signUp extends AppCompatActivity {
             public void onClick(View v) {
                 String Email = email.getText().toString();
                 String Pass = password.getText().toString();
+                startActivity(new Intent(signUp.this, Login.class));
                 //mAuth.signInWithEmailAndPassword(Email,Pass);
-                FirebaseUser user = mAuth.getCurrentUser();
-                if(user.isEmailVerified()) {
+                //FirebaseUser user = mAuth.getCurrentUser();
+                /*if(user.isEmailVerified()) {
                     startActivity(new Intent(signUp.this, Login.class));
                     finish();
-                }
+                }*/
             }
         });
     }
@@ -188,4 +244,11 @@ public class signUp extends AppCompatActivity {
             finish();
         }
     }
+
+    /*@Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(LocaleHelper.onAttach(newBase));
+    }*/
+
+
 }

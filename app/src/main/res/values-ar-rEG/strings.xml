@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="create">إنشاء حساب</string>
+    <string name="email">ايميل</string>
+    <string name="first_name">الاسم الاول</string>
+    <string name="login">تسجيل الدخول</string>
+</resources>
