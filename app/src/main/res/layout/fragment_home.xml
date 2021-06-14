@@ -32,7 +32,7 @@
         app:layout_constraintTop_toTopOf="@+id/imageView9" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/like"
         android:layout_width="116dp"
         android:layout_height="50dp"
         android:layout_marginTop="28dp"

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name" translatable="false">3bber</string>
+    <string name="app_name">3bber</string>
     <string name="navigation_drawer_open" translatable="false">Open navigation drawer</string>
     <string name="navigation_drawer_close" translatable="false">Close navigation drawer</string>
     <string name="nav_header_title" translatable="false">Android Studio</string>
@@ -11,10 +11,32 @@
     <string name="menu_gallery" translatable="false">History</string>
     <string name="menu_slideshow" translatable="false">Mood Tracker</string>
 
-    <string name="create">Create Account</string>
+    <string name="create">Sign Up</string>
     <string name="email">Email</string>
-    <string name="first_name">First Name</string>
+    <string name="username">Username</string>
     <string name="login">Login</string>
+    <string name="password">Passsword</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="show_password">Show password</string>
+    <string name="create_account">Create Account</string>
+    <string name="gender">Gender</string>
+    <string name="male">Male</string>
+    <string name="female">female</string>
+    <string name="role">Register as</string>
+    <string name="fields_error">Please fill the required fields</string>
+    <string name="email_error">Email is badly formatted</string>
+    <string name="role_error">Please select your role</string>
+    <string name="gender_error">Please select your gender</string>
+    <string name="pass_error_8">Password should contain at least 8 characters</string>
+    <string name="pass_Error_numchar">Password should has numbers and letters</string>
+    <string name="confirm_error">Passwords do not match</string>
+    <string name="name_error">Username is already taken</string>
+    <string name="don_t_have_an_account">Don\'t have an account?</string>
+    <string-array name="roleMenu">
+        <item>Select Role</item>
+        <item>User</item>
+        <item>Psychologist/Guardian</item>
+    </string-array>
 
     <string-array name="locality">
         <item>عربي</item>

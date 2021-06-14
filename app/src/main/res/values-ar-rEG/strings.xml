@@ -1,7 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="create">إنشاء حساب</string>
-    <string name="email">ايميل</string>
-    <string name="first_name">الاسم الاول</string>
+    <string name="email">الإيميل</string>
+    <string name="username">اسم المستخدم</string>
     <string name="login">تسجيل الدخول</string>
+    <string name="password">كلمة المرور</string>
+    <string name="confirm_password">تأكيد كلمة المرور</string>
+    <string name="show_password">إظهار كلمة المرور</string>
+    <string name="app_name">عبر</string>
+    <string name="create_account">إنشاء حساب</string>
+    <string name="gender">الجنس</string>
+    <string name="male">ذكر</string>
+    <string name="female">أنثى</string>
+    <string name="role">تسجيل كـ</string>
+    <string name="fields_error">املأ الحقول المطلوبة رجاءاً</string>
+    <string name="email_error">صيغة الإيميل غير صحيحة</string>
+    <string name="role_error">أدخل نوع حسابك رجاءاً</string>
+    <string name="gender_error">ادخل جنسك رجاءاً</string>
+    <string name="pass_error_8">كلمة المرور يجب أ تحتوي على الأقل 8 حروف</string>
+    <string name="pass_Error_numchar">كلمة المرور يجب أن تحتوي على أرقام وحروف</string>
+    <string name="confirm_error">كلمات المرور غير متطابقة</string>
+    <string name="name_error">اسم المستخدم مسجل بالفعل</string>
+    <string name="don_t_have_an_account">لا تمتلك حساب؟</string>
 </resources>

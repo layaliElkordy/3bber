@@ -27,7 +27,8 @@ import es.dmoral.toasty.Toasty;
 
 public class Login extends AppCompat {
 
-    Button login, signup;
+    Button login;
+    TextView signup;
     EditText email, password;
     ProgressBar progress;
     FirebaseAuth mAuth;
@@ -38,15 +39,19 @@ public class Login extends AppCompat {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        //set an icon for the action bar
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeAsUpIndicator(R.mipmap.ic_launcher);
+
         mAuth = FirebaseAuth.getInstance();
 
-        login = (Button)findViewById(R.id.login);
-        signup = (Button)findViewById(R.id.signUp);
-        email = (EditText)findViewById(R.id.email);
-        password = (EditText)findViewById(R.id.loginPassword);
+        login = findViewById(R.id.login);
+        signup = findViewById(R.id.signUp);
+        //email = (EditText)findViewById(R.id.email);
+        //password = (EditText)findViewById(R.id.loginPassword);
         progress = findViewById(R.id.progressBar);
         show = findViewById(R.id.loginShow);
-        TextView useremail = findViewById(R.id.useremail);
+        //TextView useremail = findViewById(R.id.useremail);
 
         login.setOnClickListener(new View.OnClickListener() {
             @Override

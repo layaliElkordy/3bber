@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,135 +7,308 @@
     android:background="@drawable/b10"
     tools:context=".Login">
 
-    <EditText
-        android:id="@+id/emailUp"
-        android:layout_width="262dp"
-        android:layout_height="55dp"
-        android:layout_marginTop="80dp"
-        android:ems="10"
-        android:hint="@string/email"
-        android:inputType="textEmailAddress"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-    <EditText
-        android:id="@+id/firstN"
-        android:layout_width="264dp"
-        android:layout_height="59dp"
-        android:layout_marginTop="12dp"
-        android:ems="10"
-        android:hint="@string/first_name"
-        android:inputType="textPersonName"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.511"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/emailUp" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-    <EditText
-        android:id="@+id/lastN"
-        android:layout_width="264dp"
-        android:layout_height="59dp"
-        android:layout_marginTop="12dp"
-        android:ems="10"
-        android:hint="Phone"
-        android:inputType="textPersonName"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.511"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/firstN" />
-
-    <EditText
-        android:id="@+id/password"
-        android:layout_width="264dp"
-        android:layout_height="59dp"
-        android:layout_marginTop="12dp"
-        android:ems="10"
-        android:hint="Passsword"
-        android:inputType="textPassword"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.527"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/lastN" />
-
-    <EditText
-        android:id="@+id/confirmpass"
-        android:layout_width="264dp"
-        android:layout_height="59dp"
-        android:layout_marginTop="12dp"
-        android:ems="10"
-        android:hint="Confirm Password"
-        android:inputType="textPassword"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.511"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/password" />
-
-    <Button
-        android:id="@+id/register"
-        android:layout_width="143dp"
-        android:layout_height="57dp"
-        android:layout_marginTop="128dp"
-        android:text="Register"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/confirmpass" />
-
-    <Button
-        android:id="@+id/go2login"
-        android:layout_width="143dp"
-        android:layout_height="57dp"
-        android:layout_marginTop="12dp"
-        android:text="login"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/register" />
-
-    <ProgressBar
-        android:id="@+id/progressBar"
-        style="?android:attr/progressBarStyle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:visibility="invisible"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/go2login" />
-
-    <TextView
-        android:id="@+id/create"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:text="@string/create"
-        android:textSize="30sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <CheckBox
-        android:id="@+id/checkBox"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Show password"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.261"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/confirmpass" />
-
-    <Spinner
-        android:id="@+id/spinner"
-        android:layout_width="157dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="16dp"
-        android:entries="@array/locality"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/checkBox" />
+            <ImageView
+                android:id="@+id/imageView10"
+                android:layout_width="@dimen/_70sdp"
+                android:layout_height="@dimen/_70sdp"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/_12sdp"
+                app:srcCompat="@drawable/logo" />
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+            <TextView
+                android:id="@+id/fields_Error"
+                android:layout_width="@dimen/_240sdp"
+                android:layout_height="@dimen/_12sdp"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/_7sdp"
+                android:fontFamily="@font/abhaya_libre_semibold"
+                android:text="@string/fields_error"
+                android:textColor="#AA1616"
+                android:textSize="@dimen/_11ssp"
+                android:visibility="invisible" />
+
+            <EditText
+                android:id="@+id/user_email"
+                android:layout_width="@dimen/_240sdp"
+                android:layout_height="@dimen/_33sdp"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/_2sdp"
+                android:background="@drawable/field"
+                android:ems="10"
+                android:fontFamily="@font/abhaya_libre_semibold"
+                android:hint="@string/email"
+                android:inputType="textEmailAddress"
+                android:paddingLeft="@dimen/_20sdp"
+                android:paddingRight="@dimen/_20sdp"
+                android:textSize="@dimen/_15ssp" />
+
+            <TextView
+                android:id="@+id/email_Error"
+                android:layout_width="@dimen/_210sdp"
+                android:layout_height="@dimen/_13sdp"
+                android:layout_gravity="center"
+                android:fontFamily="@font/abhaya_libre_semibold"
+                android:text="@string/email_error"
+                android:textColor="#AA1616"
+                android:textSize="@dimen/_11ssp"
+                android:visibility="invisible" />
+
+            <EditText
+                android:id="@+id/username"
+                android:layout_width="@dimen/_240sdp"
+                android:layout_height="@dimen/_33sdp"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/_12sdp"
+                android:background="@drawable/field"
+                android:ems="10"
+                android:fontFamily="@font/abhaya_libre_semibold"
+                android:hint="@string/username"
+                android:inputType="textPersonName"
+                android:paddingLeft="@dimen/_20sdp"
+                android:paddingRight="@dimen/_20sdp"
+                android:textSize="@dimen/_15ssp" />
+
+            <TextView
+                android:id="@+id/name_Error"
+                android:layout_width="@dimen/_210sdp"
+                android:layout_height="@dimen/_13sdp"
+                android:layout_gravity="center"
+                android:fontFamily="@font/abhaya_libre_semibold"
+                android:text="@string/name_error"
+                android:textColor="#AA1616"
+                android:textSize="@dimen/_11ssp"
+                android:visibility="invisible"/>
+
+            <EditText
+                android:id="@+id/password"
+                android:layout_width="@dimen/_240sdp"
+                android:layout_height="@dimen/_33sdp"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/_12sdp"
+                android:background="@drawable/field"
+                android:ems="10"
+                android:fontFamily="@font/abhaya_libre_semibold"
+                android:hint="@string/password"
+                android:inputType="textPassword"
+                android:paddingLeft="@dimen/_20sdp"
+                android:paddingRight="@dimen/_20sdp"
+                android:textSize="@dimen/_15ssp" />
+
+            <TextView
+                android:id="@+id/pass_error"
+                android:layout_width="@dimen/_210sdp"
+                android:layout_height="@dimen/_25sdp"
+                android:layout_gravity="center"
+                android:fontFamily="@font/abhaya_libre_semibold"
+                android:text="@string/pass_Error_numchar"
+                android:textColor="#AA1616"
+                android:textSize="@dimen/_11ssp"
+                android:visibility="invisible" />
+
+            <EditText
+                android:id="@+id/confirmpass"
+                android:layout_width="@dimen/_240sdp"
+                android:layout_height="@dimen/_33sdp"
+                android:layout_gravity="center"
+                android:background="@drawable/field"
+                android:ems="10"
+                android:fontFamily="@font/abhaya_libre_semibold"
+                android:hint="@string/confirm_password"
+                android:inputType="textPassword"
+                android:paddingLeft="@dimen/_20sdp"
+                android:paddingRight="@dimen/_20sdp"
+                android:textSize="@dimen/_15ssp" />
+
+            <TextView
+                android:id="@+id/confirm_Error"
+                android:layout_width="@dimen/_210sdp"
+                android:layout_height="@dimen/_13sdp"
+                android:layout_gravity="center"
+                android:fontFamily="@font/abhaya_libre_semibold"
+                android:text="@string/confirm_error"
+                android:textColor="#AA1616"
+                android:textSize="@dimen/_11ssp"
+                android:visibility="invisible"/>
+
+            <CheckBox
+                android:id="@+id/checkBox"
+                android:layout_width="@dimen/_225sdp"
+                android:layout_height="@dimen/_20sdp"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:fontFamily="@font/abhaya_libre_semibold"
+                android:textSize="@dimen/_11ssp"
+                android:text="@string/show_password" />
+
+            <LinearLayout
+                android:layout_width="@dimen/_220sdp"
+                android:layout_height="@dimen/_25sdp"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/textView11"
+                    android:layout_width="@dimen/_30sdp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/abhaya_libre_semibold"
+                    android:gravity="center|left"
+                    android:text="@string/gender"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_14ssp"/>
+
+                <RadioGroup
+                    android:id="@+id/radiogroup"
+                    android:layout_width="@dimen/_110sdp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:layout_marginLeft="@dimen/_15sdp"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+                    <RadioButton
+                        android:id="@+id/male"
+                        android:layout_width="@dimen/_70sdp"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/abhaya_libre_semibold"
+                        android:text="@string/male"
+                        android:textSize="@dimen/_14ssp" />
+
+                    <RadioButton
+                        android:id="@+id/female"
+                        android:layout_width="@dimen/_70sdp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:fontFamily="@font/abhaya_libre_semibold"
+                        android:text="@string/female"
+                        android:textSize="@dimen/_14ssp" />
+                </RadioGroup>
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/gender_error"
+                android:layout_width="@dimen/_220sdp"
+                android:layout_height="@dimen/_13sdp"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/_4sdp"
+                android:fontFamily="@font/abhaya_libre_semibold"
+                android:text="@string/gender_error"
+                android:textColor="#AA1616"
+                android:textSize="@dimen/_11ssp"
+                android:visibility="invisible"/>
+
+            <LinearLayout
+                android:layout_width="@dimen/_220sdp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/textView12"
+                    android:layout_width="@dimen/_30sdp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/abhaya_libre_semibold"
+                    android:gravity="center|left"
+                    android:text="@string/role"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_14ssp" />
+
+                <Spinner
+                    android:id="@+id/rolesp"
+                    android:layout_width="@dimen/_75sdp"
+                    android:layout_height="@dimen/_30sdp"
+                    android:layout_weight="1"
+                    android:background="@drawable/spinner"
+                    android:entries="@array/roleMenu"
+                    android:fontFamily="@font/abhaya_libre_semibold"
+                    android:paddingLeft="@dimen/_7sdp"
+                    android:paddingRight="@dimen/_30sdp"
+                    android:spinnerMode="dropdown"
+                    android:textSize="@dimen/_14ssp"/>
+            </LinearLayout>
+
+
+            <TextView
+                android:id="@+id/role_error"
+                android:layout_width="@dimen/_220sdp"
+                android:layout_height="@dimen/_13sdp"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/_4sdp"
+                android:fontFamily="@font/abhaya_libre_semibold"
+                android:text="@string/role_error"
+                android:textColor="#AA1616"
+                android:textSize="@dimen/_11ssp"
+                android:visibility="invisible"/>
+
+            <Button
+                android:id="@+id/create"
+                android:layout_width="@dimen/_180sdp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:background="@drawable/button"
+                android:fontFamily="@font/abhaya_libre_semibold"
+                android:text="@string/create_account"
+                android:textAllCaps="false"
+                android:textSize="@dimen/_18ssp"
+                app:backgroundTintMode="multiply" />
+
+            <LinearLayout
+                android:layout_width="@dimen/_240sdp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/_8sdp"
+                android:layout_marginBottom="@dimen/_12sdp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/textView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/abhaya_libre_semibold"
+                    android:gravity="right"
+                    android:text="Already have an account?"
+                    android:textSize="@dimen/_14ssp" />
+
+                <TextView
+                    android:id="@+id/go2login"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/_2sdp"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/abhaya_libre_semibold"
+                    android:text="Sign in"
+                    android:textColor="#01579B"
+                    android:textSize="@dimen/_14ssp" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_70sdp"
+            android:layout_centerVertical="true"
+            android:visibility="gone"/>
+
+
+    </RelativeLayout>
+
+</ScrollView>
