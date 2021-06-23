@@ -22,4 +22,7 @@
     <string name="confirm_error">كلمات المرور غير متطابقة</string>
     <string name="name_error">اسم المستخدم مسجل بالفعل</string>
     <string name="don_t_have_an_account">لا تمتلك حساب؟</string>
+    <string name="abber_logo">شعار عبّر</string>
+    <string name="already_have_an_account">هل أنت مسجل بالفعل؟</string>
+    <string name="sign_in">تسجيل الدخول</string>
 </resources>

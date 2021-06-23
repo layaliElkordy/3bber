@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.example.a3bbernav">
+
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -8,7 +11,27 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/Theme.3bberNav">
-        <activity android:name=".signUp"></activity>
+        <activity android:name=".profile"></activity>
+        <activity android:name=".resetPassword">
+            <intent-filter
+                android:autoVerify="true"
+                tools:targetApi="23">
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data
+                    android:host="3bber.com"
+                    android:scheme="https" />
+                <data
+                    android:host="3bber.com"
+                    android:scheme="http" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".Forgot_password" />
+        <activity android:name=".verify_email" />
+        <activity android:name=".signUp" />
         <activity android:name=".Login" />
         <activity
             android:name=".MainActivity"

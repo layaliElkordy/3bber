@@ -1,18 +1,30 @@
 package com.example.a3bbernav;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Menu;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.dynamiclinks.FirebaseDynamicLinks;
+import com.google.firebase.dynamiclinks.PendingDynamicLinkData;
 
 import androidx.annotation.NonNull;
 import androidx.core.view.GravityCompat;
@@ -26,10 +38,18 @@ import androidx.appcompat.widget.Toolbar;
 
 import es.dmoral.toasty.Toasty;
 
+import static android.content.ContentValues.TAG;
+
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
 
     private AppBarConfiguration mAppBarConfiguration;
-    FirebaseAuth fAuth = FirebaseAuth.getInstance();
+    FirebaseAuth fAuth;
+
+    TextView profile_Email;
+    TextView profile_name;
+
+    SharedPreferences sp;
+    String emailLink;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +58,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        profile_Email = (TextView)findViewById(R.id.profile_email);
+        profile_name = (TextView)findViewById(R.id.profile_name);
+
+        //get an instance from firebase
+        fAuth = FirebaseAuth.getInstance();
+
+        sp = PreferenceManager.getDefaultSharedPreferences(this);
+
         //set language to arabic
 
         // fAuth.setLanguageCode("ar");
@@ -45,11 +73,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.getMenu().findItem(R.id.nav_logout).setOnMenuItemClickListener(menuItem -> {
-            Toasty.normal(getBaseContext(), "Logout",
-                    Toast.LENGTH_SHORT).show();
-            fAuth.signOut();
-            startActivity(new Intent(getApplicationContext(), Login.class));
-            finish();
+            if(fAuth.getCurrentUser()!=null){
+                fAuth.signOut();
+                Toasty.normal(getBaseContext(), "Logout",
+                        Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(getApplicationContext(), Login.class));
+                finish();
+            }else{
+                startActivity(new Intent(getApplicationContext(), Login.class));
+                finish();
+            }
             return true;
         });
         // Passing each menu ID as a set of Ids because each
@@ -62,6 +95,73 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
 
+        /*fAuth = FirebaseAuth.getInstance();
+        Intent intent = getIntent();
+        if(intent.getData()!=null){
+            emailLink = intent.getData().toString();
+        }
+
+        // Confirm the link is a sign-in with email link.
+        if (fAuth.isSignInWithEmailLink(emailLink)) {
+            // Retrieve this from wherever you stored it
+            String email = sp.getString("forgot_email","");
+            Log.i(TAG, "signed");
+
+            // The client SDK will parse the code from the link for you.
+            fAuth.signInWithEmailLink(email, emailLink)
+                    .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            if (task.isSuccessful()) {
+                                Log.i(TAG, "Successfully signed in with email link!");
+                                Toasty.normal(getBaseContext(), "signed successfully",
+                                        Toast.LENGTH_LONG).show();
+                                if (task.getResult() != null && task.getResult().getUser() != null) {
+
+                                    FirebaseUser user = task.getResult().getUser();
+
+                                    if (!TextUtils.isEmpty(user.getUid()))
+                                        Log.i(TAG, "signInWithCredential: " + user.getUid());
+                                }
+
+                            } else {
+                                Log.e(TAG, "Error signing in with email link", task.getException());
+                            }
+                        }
+                    });
+        }*/
+
+
+        FirebaseDynamicLinks.getInstance()
+                .getDynamicLink(getIntent())
+                .addOnSuccessListener(this, new OnSuccessListener<PendingDynamicLinkData>() {
+                    @Override
+                    public void onSuccess(PendingDynamicLinkData pendingDynamicLinkData) {
+                        Log.i("SignActivity","We have a dynamic link: main");
+                        // Get deep link from result (may be null if no link is found)
+                        Uri deepLink = null;
+                        if (pendingDynamicLinkData != null) {
+                            deepLink = pendingDynamicLinkData.getLink();
+                        }
+
+                        if(deepLink!=null){
+                            Log.i("SignActivity","Here is the dynamic link"+deepLink.toString());/////////
+                            //startActivity(new Intent(MainActivity.this, resetPassword.class));
+                            //finish();
+                        }
+
+                        //String email = deepLink.getQueryParameter("email");
+                        //String password = deepLink.getQueryParameter("password");
+
+                    }
+                })
+                .addOnFailureListener(this, new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toasty.normal(getBaseContext(), e.toString(),
+                                Toast.LENGTH_LONG).show();
+                    }
+                });
 
     }
 
@@ -73,6 +173,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         if (currentUser == null) {
             startActivity(new Intent(MainActivity.this, Login.class));
             finish();
+        }else if(!currentUser.isEmailVerified()){
+            startActivity(new Intent(MainActivity.this, verify_email.class));
+            finish();
+        }
+        else{
+            //profile_Email.setText(currentUser.getEmail());
+            //profile_name.setText(currentUser.getDisplayName());
         }
     }
 
@@ -103,7 +210,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             case R.id.nav_logout:
                 Toasty.info(getBaseContext(), "Logout",
                         Toast.LENGTH_SHORT, true).show();
-                fAuth.signOut();
+                //fAuth.signOut();
                 startActivity(new Intent(getApplicationContext(), Login.class));
                 finish();
                 return true;
@@ -112,41 +219,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         return true;
     }
 
-   /* @Override
-    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 
-        if(item.getItemId()==R.id.nav_logout){
-            FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
-            if (currentUser != null) {
-                Toast.makeText(getApplicationContext(), "logout", Toast.LENGTH_LONG).show();
-                mAuth.signOut();
-                startActivity(new Intent(getApplicationContext(), Login.class));
-                finish();
-            }
-        }
-        /*int id = item.getItemId();
-
-        switch (id) {
-            case R.id.item_home:
-                Toast.makeText(this, "Home", Toast.LENGTH_SHORT).show();
-                break;
-            case R.id.item_userProfile:
-                Toast.makeText(this, "User Profile", Toast.LENGTH_SHORT).show();
-                break;
-            case R.id.item_recycleSites_Maps:
-                Toast.makeText(this, "Waste and Recycle Sites", Toast.LENGTH_SHORT).show();
-                break;
-            case R.id.item_settings:
-                Toast.makeText(this, "Settings", Toast.LENGTH_SHORT).show();
-                break;
-            case R.id.item_logOut:
-                logOut();
-                return true;
-        }
-
-        //drawerLayout.closeDrawer(GravityCompat.START);
-        return true;
-    }*/
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
