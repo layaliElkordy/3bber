@@ -36,6 +36,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import de.hdodenhof.circleimageview.CircleImageView;
 import es.dmoral.toasty.Toasty;
 
 import static android.content.ContentValues.TAG;
@@ -44,12 +45,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     private AppBarConfiguration mAppBarConfiguration;
     FirebaseAuth fAuth;
+    FirebaseUser currentUser;
 
     TextView profile_Email;
     TextView profile_name;
+    CircleImageView profile_photo;
 
     SharedPreferences sp;
-    String emailLink;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,6 +62,17 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         profile_Email = (TextView)findViewById(R.id.profile_email);
         profile_name = (TextView)findViewById(R.id.profile_name);
+        profile_photo = findViewById(R.id.user_photo);
+
+        FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
+
+        profile_Email.setText(currentUser.getEmail());
+        profile_name.setText(currentUser.getDisplayName());
+
+        Intent intent = getIntent();
+        String image_path= intent.getStringExtra("imagePath");
+        Uri imageUri = Uri.parse(image_path);
+        profile_photo.setImageURI(imageUri);
 
         //get an instance from firebase
         fAuth = FirebaseAuth.getInstance();
@@ -94,43 +107,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
-
-        /*fAuth = FirebaseAuth.getInstance();
-        Intent intent = getIntent();
-        if(intent.getData()!=null){
-            emailLink = intent.getData().toString();
-        }
-
-        // Confirm the link is a sign-in with email link.
-        if (fAuth.isSignInWithEmailLink(emailLink)) {
-            // Retrieve this from wherever you stored it
-            String email = sp.getString("forgot_email","");
-            Log.i(TAG, "signed");
-
-            // The client SDK will parse the code from the link for you.
-            fAuth.signInWithEmailLink(email, emailLink)
-                    .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                        @Override
-                        public void onComplete(@NonNull Task<AuthResult> task) {
-                            if (task.isSuccessful()) {
-                                Log.i(TAG, "Successfully signed in with email link!");
-                                Toasty.normal(getBaseContext(), "signed successfully",
-                                        Toast.LENGTH_LONG).show();
-                                if (task.getResult() != null && task.getResult().getUser() != null) {
-
-                                    FirebaseUser user = task.getResult().getUser();
-
-                                    if (!TextUtils.isEmpty(user.getUid()))
-                                        Log.i(TAG, "signInWithCredential: " + user.getUid());
-                                }
-
-                            } else {
-                                Log.e(TAG, "Error signing in with email link", task.getException());
-                            }
-                        }
-                    });
-        }*/
-
 
         FirebaseDynamicLinks.getInstance()
                 .getDynamicLink(getIntent())

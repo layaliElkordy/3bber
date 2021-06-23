@@ -55,6 +55,7 @@
     <string name="email_not_received_yet">Email not received yet?</string>
     <string name="back">Back</string>
     <string name="next">Next</string>
+    <string name="add_photo">Add Photo</string>
     <string-array name="roleMenu">
         <item>Select Role</item>
         <item>User</item>

@@ -14,7 +14,7 @@
 
 
     <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/meal_image_order"
+        android:id="@+id/user_photo"
         android:layout_width="91dp"
         android:layout_height="87dp"
         android:layout_alignParentLeft="true"
